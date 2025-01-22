@@ -1,0 +1,44 @@
+name: Bug Report
+description: Report a problem or error with the project.
+title: "[BUG]: "
+labels: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide the following information:
+
+  - type: input
+    attributes:
+      label: Summary
+      description: Provide a brief summary of the bug.
+      placeholder: Describe the issue in one sentence.
+
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: Provide the steps to reproduce the issue.
+      placeholder: "1. Go to...\n2. Click on...\n3. See error"
+
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: Describe the correct behavior.
+
+  - type: textarea
+    attributes:
+      label: Actual Behavior
+      description: What happens instead of the expected behavior?
+      placeholder: Describe the observed issue.
+
+  - type: input
+    attributes:
+      label: Environment
+      description: Provide details like OS, browser, or application version.
+      placeholder: e.g., macOS 13.2, Chrome 89
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other information or screenshots that might help.
