@@ -1,0 +1,33 @@
+name: New Task
+description: Create a task or to-do item for the project.
+title: "[TASK]: "
+labels: task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new task or to-do item.
+
+  - type: input
+    attributes:
+      label: Task Title
+      description: Provide a short title for the task.
+      placeholder: "Set up CI/CD pipeline"
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Describe the task in detail.
+      placeholder: "Set up continuous integration using GitHub Actions."
+
+  - type: textarea
+    attributes:
+      label: Acceptance Criteria
+      description: Define when the task can be considered complete.
+      placeholder: "1. CI/CD pipeline runs on each pull request.\n2. Deployments are automated."
+
+  - type: textarea
+    attributes:
+      label: Additional Notes
+      description: Include any other details or resources for the task.
+      placeholder: "Refer to the [project wiki](link)."
