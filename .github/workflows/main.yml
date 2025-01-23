@@ -41,7 +41,7 @@ jobs:
           PROJECT_ID: PVT_kwHOC4nNZ84AwJjl
         run: |
           ISSUE_ID=$(gh issue view ${{ github.event.issue.number }} --json id --jq .id)
-          gh project item add $PROJECT_ID --content-id $ISSUE_ID
+          gh project item-create $PROJECT_ID --content-id $ISSUE_ID
 
       # Step 4: Set Status to "Open" when an issue is added to the project
       - name: Set Status to Open
