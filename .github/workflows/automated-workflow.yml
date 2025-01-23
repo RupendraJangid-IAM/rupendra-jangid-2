@@ -15,7 +15,7 @@ jobs:
       - name: Set Status to Open
         if: github.event.action == 'opened'
         env:
-          PROJECT_ID: <your_project_id>
+          PROJECT_ID: PVT_kwHOC4nNZ84AwJjl
         run: |
           gh project item-field update ${{ env.PROJECT_ID }} --field "Status" --value "Open" --item-id ${{ github.event.issue.node_id }}
 
@@ -23,7 +23,7 @@ jobs:
       - name: Set Status to Todo
         if: github.event.action == 'assigned'
         env:
-          PROJECT_ID: <your_project_id>
+          PROJECT_ID: PVT_kwHOC4nNZ84AwJjl
         run: |
           gh project item-field update ${{ env.PROJECT_ID }} --field "Status" --value "Todo" --item-id ${{ github.event.issue.node_id }}
 
@@ -31,13 +31,15 @@ jobs:
       - name: Set Status to In-Progress
         if: github.event.action == 'edited' && contains(github.event.issue.body, 'linked branch')
         env:
-          PROJECT_ID: <your_project_id>
+          PROJECT_ID: PVT_kwHOC4nNZ84AwJjl
         run: |
           gh project item-field update ${{ env.PROJECT_ID }} --field "Status" --value "In-Progress" --item-id ${{ github.event.issue.node_id }}
 
       ### Step 4: Restrict transitions from "In-Progress"
       - name: Restrict Status Changes
         if: github.event.action == 'edited'
+        env:
+          PROJECT_ID: PVT_kwHOC4nNZ84AwJjl
         run: |
           ALLOWED_STATUS="Blocked, Ready for QA, Todo"
           CURRENT_STATUS=$(gh project item-field get ${{ env.PROJECT_ID }} --field "Status" --item-id ${{ github.event.issue.node_id }})
