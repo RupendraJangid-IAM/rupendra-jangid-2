@@ -34,9 +34,15 @@ body:
 
   - type: input
     attributes:
+      label: Device
+      description: Provide device details.
+      placeholder: e.g., Desktop, Tablet, Mobile
+      
+  - type: input
+    attributes:
       label: Environment
       description: Provide details like OS, browser, or application version.
-      placeholder: e.g., macOS 13.2, Chrome 89
+      placeholder: e.g., macOS 13.2, Chrome 89, Android 12.1
 
   - type: textarea
     attributes:
