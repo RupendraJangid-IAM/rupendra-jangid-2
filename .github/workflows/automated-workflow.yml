@@ -22,4 +22,4 @@ jobs:
       # Step 3: Authenticate GitHub CLI
       - name: Authenticate GitHub CLI
         run: |
-          echo "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" | gh auth login --with-token
+          echo "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" | gh auth login --with-token
