@@ -1,0 +1,42 @@
+name: Automated Issue Workflow
+
+on:
+  # Trigger the workflow on specific issue events
+  issues:
+    types: [opened, assigned, edited]
+  issue_comment:
+    types: [created]
+
+jobs:
+  issue-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      ### Step 1: Set status to Open when the issue is created
+      - name: Set Status to Open
+        if: github.event.action == 'opened'
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label 'Open'
+
+      ### Step 2: Change status to Todo when the issue is assigned
+      - name: Set Status to Todo
+        if: github.event.action == 'assigned'
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label 'Todo' --remove-label 'Open'
+
+      ### Step 3: Change status to In-Progress when a branch is linked
+      - name: Set Status to In-Progress
+        if: github.event.action == 'edited' && contains(github.event.issue.body, 'linked branch')
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label 'In-Progress' --remove-label 'Todo'
+
+      ### Step 4: Restrict status changes from In-Progress to specific statuses
+      - name: Restrict Status Changes from In-Progress
+        if: github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'In-Progress')
+        run: |
+          if [[ "${{ github.event.issue.body }}" =~ "Blocked|Ready for QA|Todo" ]]; then
+            echo "Valid status change."
+          else
+            echo "Invalid status change from In-Progress."
+            exit 1
+          fi
